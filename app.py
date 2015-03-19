@@ -17,6 +17,8 @@ def question(id):
     if request.method == 'POST':
         if request.form['answer'] == 'yes':
             return redirect(url_for('question', id=id+1))
+        else:
+            return redirect(url_for('question', id=id))
     return render_template('question.html', question=questions[id])
 
 
