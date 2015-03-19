@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 questions = ['Is it compiled?', 'Does it run on a VM?']
@@ -12,8 +12,11 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/question/<int:id>')
+@app.route('/question/<int:id>', methods=['GET', 'POST'])
 def question(id):
+    if request.method == 'POST':
+        if request.form['answer'] == 'yes':
+            return redirect(url_for('question', id=id+1))
     return render_template('question.html', question=questions[id])
 
 

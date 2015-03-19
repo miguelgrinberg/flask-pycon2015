@@ -5,6 +5,13 @@
     <body>
         <h1>Guess the Language!</h1>
         <p>{{ question }}</p>
+        <form method="POST">
+            <p>
+                <input type="radio" name="answer" value="yes"> Yes<br>
+                <input type="radio" name="answer" value="no"> No<br>
+            </p>
+            <input type="submit" value="Submit">
+        </form>
         <p>Click <a href="{{ url_for('index') }}">here</a> to end this game.</p>
     </body>
 </html>
