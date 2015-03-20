@@ -7,13 +7,14 @@
         <p>Sorry I did not know your language. Can you help me learn it?</p>
         <form method="POST">
             {{ form.hidden_tag() }}
-            <p>{{ form.language.label }} {{ form.language() }}</p>
-            <p>{{ form.question.label }} {{ form.question() }}</p>
+            <p>{{ form.language.label }} {{ form.language() }} {% for error in form.language.errors %}[{{ error }}]{% endfor %}</p>
+            <p>{{ form.question.label }} {{ form.question() }} {% for error in form.question.errors %}[{{ error }}]{% endfor %}</p>
             <p>What is the answer to this question for your language?</p>
             <p>
             {% for option in form.answer %}
                 {{ option }} {{ option.label }}<br>
             {% endfor %}
+            {% for error in form.answer.errors %}[{{ error }}]{% endfor %}
             </p>
             {{ form.submit }}
         </form>

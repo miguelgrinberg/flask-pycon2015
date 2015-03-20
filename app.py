@@ -3,6 +3,7 @@
 from flask import Flask, render_template, redirect, url_for
 from flask_wtf import Form
 from wtforms.fields import RadioField, StringField, SubmitField
+from wtforms.validators import Required
 from guess import Guess
 
 app = Flask(__name__)
@@ -18,9 +19,10 @@ class YesNoQuestionForm(Form):
 
 
 class LearnForm(Form):
-    language = StringField('What language did you pick?')
+    language = StringField('What language did you pick?',
+                           validators=[Required()])
     question = StringField('What is a question that differentiates your '
-                           'language from mine?')
+                           'language from mine?', validators=[Required()])
     answer = RadioField('What is the answer for your language?',
                         choices=[('yes', 'Yes'), ('no', 'No')])
     submit = SubmitField('Submit')

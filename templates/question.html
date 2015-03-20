@@ -11,6 +11,7 @@
             {% for option in form.answer %}
                 {{ option }} {{ option.label }}<br>
             {% endfor %}
+            {% for error in form.answer.errors %}[{{ error }}]{% endfor %}
             </p>
             {{ form.submit }}
         </form>
